@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<div id="app">
+			<!-- +++++++++++++++ -->
+			<types
+				v-if="renderAnswer === 'types'"
+				:btns="types"
+				:answers="answers"
+				:usercurrentbranch="userCurrentBranch"
+				:subcurrency="subCurrency"
+				:factorcurrency="factorCurrency"
+				@update="typesUpdate($event)"
+				@goto="goTo($event)"
+			></types>
+			<!-- +++++++++++++++ -->
+
+			<!-- +++++++++++++++ -->
+			<countries
+				v-if="renderAnswer === 'countries'"
+				:currentslide="renderQuestion"
+				:totalslide="totalSlide"
+				:btns="countries"
+				:answers="answers"
+				:usercurrentbranch="userCurrentBranch"
+				:subcurrency="subCurrency"
+				:factorcurrency="factorCurrency"
+				@update="countriesUpdate($event)"
+				@goto="goTo($event)"
+				@goback="goBack()"
+			></countries>
+			<!-- +++++++++++++++ -->
+
+			<!-- +++++++++++++++ -->
+			<clinics
+				v-if="renderAnswer === 'clinics'"
+				:currentslide="renderQuestion"
+				:totalslide="totalSlide"
+				:btns="clinics"
+				:answers="answers"
+				:usercurrentbranch="userCurrentBranch"
+				:subcurrency="subCurrency"
+				:factorcurrency="factorCurrency"
+				@update="clinicsUpdate($event)"
+				@goto="goTo($event)"
+				@goback="goBack()"
+			></clinics>
+			<!-- +++++++++++++++ -->
+
+			<!-- +++++++++++++++ -->
+			<treamentstype
+				v-if="renderAnswer === 'treamentstype'"
+				:currentslide="renderQuestion"
+				:totalslide="totalSlide"
+				:btns="treamentstype"
+				:answers="answers"
+				:usercurrentbranch="userCurrentBranch"
+				:subcurrency="subCurrency"
+				:factorcurrency="factorCurrency"
+				@update="treamentstypeUpdate($event)"
+				@goto="goTo($event)"
+				@goback="goBack()"
+			></treamentstype>
+			<!-- +++++++++++++++ -->
+
+			<!-- +++++++++++++++ -->
+			<treamentssub
+				v-if="renderAnswer === 'treamentssub'"
+				:currentslide="renderQuestion"
+				:totalslide="totalSlide"
+				:btns="treamentssub"
+				:answers="answers"
+				:usercurrentbranch="userCurrentBranch"
+				:currency="currency"
+				:subcurrency="subCurrency"
+				:factorcurrency="factorCurrency"
+				@update="treamentssubUpdate($event)"
+				@goto="goTo($event)"
+				@goback="goBack()"
+				@setglobalcurrency="setGlobalCurrency($event)"
+			></treamentssub>
+			<!-- +++++++++++++++ -->
+
+			<!-- +++++++++++++++ -->
+			<extras
+				v-if="renderAnswer === 'extras'"
+				:currentslide="renderQuestion"
+				:totalslide="totalSlide"
+				:btns="extras"
+				:answers="answers"
+				:usercurrentbranch="userCurrentBranch"
+				:currency="currency"
+				:subcurrency="subCurrency"
+				:factorcurrency="factorCurrency"
+				@update="extrasUpdate($event)"
+				@goto="goTo($event)"
+				@goback="goBack()"
+				@setglobalcurrency="setGlobalCurrency($event)"
+			></extras>
+			<!-- +++++++++++++++ -->
+
+			<!-- +++++++++++++++ -->
+			<addtreatment
+				v-if="renderAnswer === 'addtreatment'"
+				:currentslide="renderQuestion"
+				:totalslide="totalSlide"
+				:answers="answers"
+				:usercurrentbranch="userCurrentBranch"
+				:subcurrency="subCurrency"
+				:factorcurrency="factorCurrency"
+				@selectedyes="addtreatmentYes()"
+				@selectedno="addtreatmentNo()"
+				@goto="goTo($event)"
+			></addtreatment>
+			<!-- +++++++++++++++ -->
+
+			<!-- +++++++++++++++ -->
+			<castomertreatment
+				v-if="renderAnswer === 'castomertreatment'"
+				:currentslide="renderQuestion"
+				:totalslide="totalSlide"
+				:answers="answers"
+				:usercurrentbranch="userCurrentBranch"
+				:subcurrency="subCurrency"
+				:factorcurrency="factorCurrency"
+				@selectedyes="castomertreatmentYes()"
+				@selectedno="castomertreatmentNo()"
+				@goto="goTo($event)"
+			></castomertreatment>
+			<!-- +++++++++++++++ -->
+
+			<!-- +++++++++++++++ -->
+			<accomodation
+				v-if="renderAnswer === 'accomodation'"
+				:currentslide="renderQuestion"
+				:totalslide="totalSlide"
+				:answers="answers"
+				:usercurrentbranch="userCurrentBranch"
+				:subcurrency="subCurrency"
+				:factorcurrency="factorCurrency"
+				@selectedyes="accomodationYes()"
+				@selectedno="accomodationNo()"
+				@goto="goTo($event)"
+			></accomodation>
+			<!-- +++++++++++++++ -->
+
+			<!-- +++++++++++++++ -->
+			<roomtype
+				v-if="renderAnswer === 'roomtype'"
+				:btns="roomtype"
+				:currentslide="renderQuestion"
+				:totalslide="totalSlide"
+				:answers="answers"
+				:usercurrentbranch="userCurrentBranch"
+				:subcurrency="subCurrency"
+				:factorcurrency="factorCurrency"
+				@update="roomtypeUpdate($event)"
+				@goto="goTo($event)"
+			></roomtype>
+			<!-- +++++++++++++++ -->
+
+			<!-- +++++++++++++++ -->
+			<stars
+				v-if="renderAnswer === 'stars'"
+				:btns="stars"
+				:currentslide="renderQuestion"
+				:totalslide="totalSlide"
+				:answers="answers"
+				:usercurrentbranch="userCurrentBranch"
+				:subcurrency="subCurrency"
+				:factorcurrency="factorCurrency"
+				@update="starsUpdate($event)"
+				@goto="goTo($event)"
+			></stars>
+			<!-- +++++++++++++++ -->
+
+			<!-- +++++++++++++++ -->
+			<hotel
+				v-if="renderAnswer === 'hotel'"
+				:btns="hotel"
+				:currentslide="renderQuestion"
+				:totalslide="totalSlide"
+				:answers="answers"
+				:usercurrentbranch="userCurrentBranch"
+				:subcurrency="subCurrency"
+				:factorcurrency="factorCurrency"
+				@update="hotelUpdate($event)"
+				@goto="goTo($event)"
+				@setglobalcurrency="setGlobalCurrency($event)"
+			></hotel>
+			<!-- +++++++++++++++ -->
+
+			<!-- +++++++++++++++ -->
+			<nights
+				v-if="renderAnswer === 'nights'"
+				:currentslide="renderQuestion"
+				:totalslide="totalSlide"
+				:procepernight="userCurrentBranch.hotel.priceOne"
+				:answers="answers"
+				:usercurrentbranch="userCurrentBranch"
+				:subcurrency="subCurrency"
+				:factorcurrency="factorCurrency"
+				@update="nightsUpdate($event)"
+				@goto="goTo($event)"
+			></nights>
+			<!-- +++++++++++++++ -->
+
+			<!-- +++++++++++++++ -->
+			<anotherroom
+				v-if="renderAnswer === 'anotherroom'"
+				:currentslide="renderQuestion"
+				:totalslide="totalSlide"
+				:answers="answers"
+				:usercurrentbranch="userCurrentBranch"
+				:subcurrency="subCurrency"
+				:factorcurrency="factorCurrency"
+				@selectedyes="anotherroomYes()"
+				@selectedno="anotherroomNo()"
+				@goto="goTo($event)"
+			></anotherroom>
+			<!-- +++++++++++++++ -->
+
+			<!-- +++++++++++++++ -->
+			<transportation
+				v-if="renderAnswer === 'transportation'"
+				:currentslide="renderQuestion"
+				:totalslide="totalSlide"
+				:answers="answers"
+				:usercurrentbranch="userCurrentBranch"
+				:subcurrency="subCurrency"
+				:factorcurrency="factorCurrency"
+				@selectedyes="transportationYes()"
+				@selectedno="transportationNo()"
+				@goto="goTo($event)"
+			></transportation>
+			<!-- +++++++++++++++ -->
+
+			<!-- +++++++++++++++ -->
+			<addtransportation
+				v-if="renderAnswer === 'addtransportation'"
+				:currentslide="renderQuestion"
+				:totalslide="totalSlide"
+				:btns="addtransportation"
+				:answers="answers"
+				:usercurrentbranch="userCurrentBranch"
+				:currency="currency"
+				:subcurrency="subCurrency"
+				:factorcurrency="factorCurrency"
+				@update="addtransportationUpdate($event)"
+				@goto="goTo($event)"
+				@goback="goBack()"
+				@setglobalcurrency="setGlobalCurrency($event)"
+			></addtransportation>
+			<!-- +++++++++++++++ -->
+
+			<!-- +++++++++++++++ -->
+			<anything
+				v-if="renderAnswer === 'anything'"
+				:currentslide="renderQuestion"
+				:totalslide="totalSlide"
+				:btns="anything"
+				:answers="answers"
+				:usercurrentbranch="userCurrentBranch"
+				:subcurrency="subCurrency"
+				:factorcurrency="factorCurrency"
+				@update="anythingUpdate($event)"
+				@goto="goTo($event)"
+				@goback="goBack()"
+			></anything>
+			<!-- +++++++++++++++ -->
+
+			<!-- +++++++++++++++ -->
+			<end
+				v-if="renderAnswer === 'end'"
+				:answers="answers"
+				:usercurrentbranch="userCurrentBranch"
+				:subcurrency="subCurrency"
+				:factorcurrency="factorCurrency"
+				@goto="goTo($event)"
+				@generatepdf="generatePdf()"
+			></end>
+			<!-- +++++++++++++++ -->
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>
